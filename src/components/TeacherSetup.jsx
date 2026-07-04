@@ -11,11 +11,11 @@ export function TeacherSetup({ teacherName, startId, setStartId, endId, setEndId
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem' }}>
           <div className="input-wrapper" style={{ flex: 1 }}>
             <label>ข้อเริ่มต้น (Start)</label>
-            <input type="number" value={startId} onChange={e => setStartId(e.target.value)} min="1" />
+            <input type="number" value={startId} onChange={e => setStartId(e.target.value)} min="1" placeholder="เช่น 1" />
           </div>
           <div className="input-wrapper" style={{ flex: 1 }}>
             <label>ข้อสิ้นสุด (End)</label>
-            <input type="number" value={endId} onChange={e => setEndId(e.target.value)} min="50" />
+            <input type="number" value={endId} onChange={e => setEndId(e.target.value)} min="50" placeholder="เช่น 50" />
           </div>
         </div>
         <button className="btn-luxury mt-4" onClick={onCreateRoom} disabled={loading}>
