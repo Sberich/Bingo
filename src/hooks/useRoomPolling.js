@@ -26,7 +26,7 @@ export function useRoomPolling({
         
         if (data.status === 'success') {
           if (data.roomStatus === 'ended') {
-             showToast('คุณครูได้ปิดห้องเรียนแล้ว', 'info');
+             showToast('ครูปิดห้องเรียนแล้ว', 'info');
              resetGame();
              return;
           }

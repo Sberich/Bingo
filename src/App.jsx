@@ -96,7 +96,7 @@ function App() {
   const handleJoinRoom = async () => {
     const code = roomCode.trim().toUpperCase();
     const name = playerName.trim();
-    if (!code || !name) return showToast('กรุณากรอกรหัสห้องและชื่อให้ครบถ้วน', 'error');
+    if (!code || !name) return showToast('กรอกข้อมูลไม่ครบถ้วน', 'error');
     
     setRoomCode(code);
     setPlayerName(name);
@@ -117,7 +117,7 @@ function App() {
         showToast(data.message || 'ไม่สามารถเข้าร่วมห้องได้', 'error');
       }
     } catch (err) {
-      showToast('การเชื่อมต่อล้มเหลว: โปรดตรวจสอบรหัสห้องหรืออินเทอร์เน็ต', 'error');
+      showToast('เชื่อมต่อล้มเหลว ตรวจสอบอินเทอร์เน็ต', 'error');
     }
     setLoading(false);
   };
@@ -125,7 +125,7 @@ function App() {
   const toggleMark = (index) => {
     if (card[index] === 'FREE SPACE') return;
     if (timerData && !timerData.isPaused && remainingTime <= 0) {
-      return showToast('หมดเวลา! ไม่สามารถตอบคำถามนี้ได้แล้ว', 'error');
+      return showToast('หมดเวลาตอบข้อนี้แล้ว!', 'error');
     }
     
     const newMarked = [...marked];
@@ -134,7 +134,7 @@ function App() {
       const currentMarkedCount = newMarked.filter(Boolean).length;
       const maxAllowed = currentClues.length + 1; // +1 for Free Space
       if (currentMarkedCount >= maxAllowed) {
-        return showToast('คุณตอบเกินจำนวนคำใบ้แล้ว! กรุณาเอาติ๊กอันเก่าออกก่อนตอบใหม่', 'error');
+        return showToast('คุณกาคำตอบเกินจำนวนคำใบ้!', 'error');
       }
     }
     
@@ -151,7 +151,7 @@ function App() {
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       if (data.status === 'success') {
-        showToast('🎉 ยินดีด้วย! บันทึกสถานะ BINGO สำเร็จ 🎉', 'success');
+        showToast('🎉 บันทึกสถานะ BINGO สำเร็จ! 🎉', 'success');
       } else if (data.status === 'cheat') {
         showToast(data.message, 'error');
         setTimeout(() => resetGame(), 3000); // Kick out
@@ -179,7 +179,7 @@ function App() {
         showToast(data.message || 'ขออภัย ไม่พบข้อมูลการลงทะเบียน', 'error');
       }
     } catch (err) {
-      showToast('การเชื่อมต่อล้มเหลว: โปรดตรวจสอบเบอร์โทรหรืออินเทอร์เน็ต', 'error');
+      showToast('เชื่อมต่อล้มเหลว ตรวจสอบอินเทอร์เน็ต', 'error');
     }
     setLoading(false);
   };
@@ -189,7 +189,7 @@ function App() {
     const eId = Number.isNaN(parseInt(endId, 10)) ? 50 : parseInt(endId, 10);
     
     if (eId - sId < 49) {
-      return showToast('ช่วงคำถามต้องห่างกันอย่างน้อย 50 ข้อ (เช่น 1-50)', 'error');
+      return showToast('ระยะคำถามต้องห่างกัน 50 ข้อขึ้นไป', 'error');
     }
     
     setLoading(true);
@@ -205,7 +205,7 @@ function App() {
         showToast('ไม่สามารถสร้างห้องได้', 'error');
       }
     } catch (err) {
-      showToast('การเชื่อมต่อล้มเหลว: ' + err.message, 'error');
+      showToast('เชื่อมต่อล้มเหลว', 'error');
     }
     setLoading(false);
   };
