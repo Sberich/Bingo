@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti';
 
 export function TeacherDashboard({ 
   roomCode, teacherName, timeLimit, setTimeLimit, latestClueText, latestAnswer,
   timerData, remainingTime, players, loading, 
   onDrawClue, onTogglePause, onEndRoom 
 }) {
+  const confettiFired = useRef(false);
+
+  useEffect(() => {
+    const hasWinner = players.some(p => p.isBingo);
+    if (hasWinner && !confettiFired.current) {
+      confettiFired.current = true;
+      const duration = 5 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
+
+      const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+      }, 250);
+    }
+  }, [players]);
+
+  const sortedPlayers = [...players].sort((a, b) => {
+    if (a.isBingo && !b.isBingo) return -1;
+    if (!a.isBingo && b.isBingo) return 1;
+    return (b.score || 0) - (a.score || 0);
+  });
+
   return (
     <div className="glass-panel wide-panel">
       <div className="teacher-dashboard">
@@ -51,10 +84,13 @@ export function TeacherDashboard({
         <div className="dashboard-right">
           <h3>ผู้เข้าร่วมสอบ ({players.length})</h3>
           <div className="player-list">
-            {players.length === 0 ? <p className="description text-muted">รอผู้เล่นเข้าร่วม...</p> : null}
-            {players.map((p, i) => (
+            {sortedPlayers.length === 0 ? <p className="description text-muted">รอผู้เล่นเข้าร่วม...</p> : null}
+            {sortedPlayers.map((p, i) => (
               <div key={i} className={`player-item ${p.isBingo ? 'winner' : ''}`}>
-                <span className="player-name">{p.name}</span>
+                <span className="player-name">
+                  {p.name}
+                  {p.score > 0 && !p.isBingo && <span style={{ fontSize: '0.8em', color: 'var(--color-gold)', marginLeft: '8px' }}>({p.score}/24)</span>}
+                </span>
                 {p.isBingo && <span className="bingo-tag">BINGO! 🎉</span>}
               </div>
             ))}

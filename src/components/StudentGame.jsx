@@ -7,12 +7,12 @@ export function StudentGame({
   return (
     <div className="glass-panel wide-panel">
       <div className="top-bar">
-        <span>👤 {playerName}</span>
+        <span className="player-name-display">👤 {playerName}</span>
         <span className="room-badge">รหัสห้อง: {roomCode}</span>
       </div>
       
       <div className="clue-display student-clue">
-        <h4>คำใบ้ล่าสุดจากห้องเรียน:</h4>
+        <h5 style={{ margin: '0 0 0.5rem 0', fontWeight: '400', color: 'var(--color-gold-light)' }}>คำใบ้ล่าสุดจากห้องเรียน:</h5>
         <div className="clue-box animated-reveal">
           {latestClueText ? latestClueText : 'รอคุณครูสุ่มคำใบ้...'}
         </div>
