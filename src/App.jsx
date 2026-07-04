@@ -22,18 +22,18 @@ function App() {
   const { toast, showToast } = useToast();
   
   // App State
-  const [role, setRole] = useState(() => sessionStorage.getItem('role') || null); 
-  const [roomCode, setRoomCode] = useState(() => sessionStorage.getItem('roomCode') || '');
-  const [playerName, setPlayerName] = useState(() => sessionStorage.getItem('playerName') || '');
+  const [role, setRole] = useState(() => localStorage.getItem('role') || null); 
+  const [roomCode, setRoomCode] = useState(() => localStorage.getItem('roomCode') || '');
+  const [playerName, setPlayerName] = useState(() => localStorage.getItem('playerName') || '');
   const [teacherPhone, setTeacherPhone] = useState('');
-  const [teacherName, setTeacherName] = useState(() => sessionStorage.getItem('teacherName') || '');
+  const [teacherName, setTeacherName] = useState(() => localStorage.getItem('teacherName') || '');
   const [startId, setStartId] = useState('1');
   const [endId, setEndId] = useState('50');
   
   const [loading, setLoading] = useState(false);
-  const [inGame, setInGame] = useState(() => sessionStorage.getItem('inGame') === 'true');
-  const [card, setCard] = useState(() => JSON.parse(sessionStorage.getItem('card') || '[]'));
-  const [marked, setMarked] = useState(() => JSON.parse(sessionStorage.getItem('marked') || '[]'));
+  const [inGame, setInGame] = useState(() => localStorage.getItem('inGame') === 'true');
+  const [card, setCard] = useState(() => JSON.parse(localStorage.getItem('card') || '[]'));
+  const [marked, setMarked] = useState(() => JSON.parse(localStorage.getItem('marked') || '[]'));
   
   const [currentClues, setCurrentClues] = useState([]);
   const [latestClueText, setLatestClueText] = useState(null);
@@ -43,23 +43,23 @@ function App() {
   const [timeLimit, setTimeLimit] = useState('30');
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  // Sync to sessionStorage
+  // Sync to localStorage
   useEffect(() => {
-    if (role) sessionStorage.setItem('role', role);
-    else sessionStorage.removeItem('role');
+    if (role) localStorage.setItem('role', role);
+    else localStorage.removeItem('role');
     
-    if (roomCode) sessionStorage.setItem('roomCode', roomCode);
-    else sessionStorage.removeItem('roomCode');
+    if (roomCode) localStorage.setItem('roomCode', roomCode);
+    else localStorage.removeItem('roomCode');
     
-    if (playerName) sessionStorage.setItem('playerName', playerName);
-    else sessionStorage.removeItem('playerName');
+    if (playerName) localStorage.setItem('playerName', playerName);
+    else localStorage.removeItem('playerName');
     
-    if (teacherName) sessionStorage.setItem('teacherName', teacherName);
-    else sessionStorage.removeItem('teacherName');
+    if (teacherName) localStorage.setItem('teacherName', teacherName);
+    else localStorage.removeItem('teacherName');
     
-    sessionStorage.setItem('inGame', inGame.toString());
-    sessionStorage.setItem('card', JSON.stringify(card));
-    sessionStorage.setItem('marked', JSON.stringify(marked));
+    localStorage.setItem('inGame', inGame.toString());
+    localStorage.setItem('card', JSON.stringify(card));
+    localStorage.setItem('marked', JSON.stringify(marked));
   }, [role, roomCode, playerName, teacherName, inGame, card, marked]);
 
   const remainingTime = useGameTimer(timerData);
@@ -78,7 +78,9 @@ function App() {
     setLatestAnswer(null);
     setTimerData(null);
     setShowConfirmModal(false);
-    sessionStorage.clear();
+    
+    // Clear only app specific keys so we don't wipe out other apps on the same domain
+    ['role', 'roomCode', 'playerName', 'teacherName', 'inGame', 'card', 'marked'].forEach(key => localStorage.removeItem(key));
   }, []);
 
   useRoomPolling({

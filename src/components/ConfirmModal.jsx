@@ -7,6 +7,9 @@ export function ConfirmModal({ show, onConfirm, onCancel }) {
         <h2 className="section-title">ประกาศชัยชนะ</h2>
         <div className="gold-divider-small"></div>
         <p className="description">คุณตรวจสอบความถูกต้องของกระดานแล้ว และต้องการประกาศ BINGO ใช่หรือไม่?</p>
+        <p className="description" style={{ color: '#ef9a9a', marginTop: '10px', fontSize: '0.85em' }}>
+          ⚠️ หากตรวจสอบแล้วพบว่าไม่ถูกต้อง <br/>เกมของคุณจะจบทันที และถูกเชิญออกจากห้องในรอบนี้!
+        </p>
         <div className="modal-actions mt-4">
           <button className="btn-luxury" onClick={onConfirm}>
             <span className="btn-text-main">ยืนยัน BINGO</span>
