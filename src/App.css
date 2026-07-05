@@ -120,11 +120,21 @@ body::before {
     60vw 145vh var(--color-gold-light),
     88vw 100vh var(--color-gold),
     20vw 95vh var(--color-gold-light);
-  animation: floatUp 35s linear infinite;
+  animation: fireflyFloat 35s ease-in-out infinite;
   border-radius: 50%;
   z-index: 5;
   pointer-events: none;
   opacity: 0.4;
+}
+
+@keyframes fireflyFloat {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  25% { transform: translateY(-30vh) translateX(20px); opacity: 0.2; }
+  50% { transform: translateY(-60vh) translateX(-15px); opacity: 0.9; }
+  75% { transform: translateY(-100vh) translateX(25px); opacity: 0.1; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-150vh) translateX(-20px); opacity: 0; }
 }
 
 @keyframes floatUp {
