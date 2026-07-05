@@ -43,20 +43,23 @@ export function TeacherDashboard({
       <div className="teacher-dashboard">
         <div className="dashboard-left">
           <h2 className="room-code-large">รหัสห้อง: <span>{roomCode}</span></h2>
-          <div className="gold-divider-small" style={{margin: '1rem 0'}}></div>
-          <p style={{color: 'var(--color-gold-light)', marginBottom: '1.5rem'}}>ผู้ควบคุมการทดสอบ: ครู{teacherName}</p>
+          <p style={{color: 'var(--color-gold-light)', marginTop: '0.5rem', marginBottom: '1.5rem', opacity: 0.8}}>ผู้ควบคุม: ครู{teacherName}</p>
+          <div className="gold-divider-small" style={{ margin: '0 0 1.5rem 0' }}></div>
           
           <div className="clue-display">
-            <h4>สุ่มคำถาม:</h4>
-            <div className="input-wrapper" style={{ marginBottom: '1rem', width: '200px' }}>
-              <label>เวลาให้ตอบ (วินาที)</label>
-              <input type="number" value={timeLimit} onChange={e => setTimeLimit(e.target.value)} min="10" />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+              <h4 style={{ margin: 0, color: 'var(--color-gold)' }}>สุ่มคำถาม</h4>
+              <div className="input-wrapper" style={{ flexDirection: 'row', alignItems: 'center', gap: '0.5rem' }}>
+                <label style={{ margin: 0 }}>เวลา (วิ)</label>
+                <input type="number" value={timeLimit} onChange={e => setTimeLimit(e.target.value)} min="10" style={{ width: '80px', padding: '0.5rem', fontSize: '1em' }} />
+              </div>
             </div>
-            <div className="clue-box large animated-reveal">
-              {latestClueText ? latestClueText : 'ยังไม่ได้เริ่มสุ่ม'}
+
+            <div className="clue-box large animated-reveal" style={{ borderLeft: 'none', textAlign: 'center', minHeight: '120px' }}>
+              {latestClueText ? latestClueText : <span style={{ opacity: 0.5 }}>ยังไม่ได้เริ่มสุ่ม</span>}
             </div>
             {latestAnswer && (
-              <div className="answer-box">เฉลย: {latestAnswer}</div>
+              <div className="answer-box" style={{ textAlign: 'center' }}>เฉลย: {latestAnswer}</div>
             )}
             
             {timerData && (
@@ -68,15 +71,15 @@ export function TeacherDashboard({
               </div>
             )}
 
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-              <button className="btn-luxury" onClick={onDrawClue} disabled={loading} style={{ flex: 2 }}>
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexDirection: 'column' }}>
+              <button className="btn-luxury" onClick={onDrawClue} disabled={loading}>
                 <span className="btn-text-main">
                   {loading && <span className="spinner"></span>}
                   {loading ? 'กำลังสุ่ม...' : 'สุ่มคำใบ้ต่อไป'}
                 </span>
               </button>
               {timerData && (
-                <button className="btn-luxury-outline" onClick={onTogglePause} disabled={loading} style={{ flex: 1 }}>
+                <button className="btn-luxury-outline" onClick={onTogglePause} disabled={loading}>
                   <span className="btn-text-main">{timerData.isPaused ? '▶ เล่นต่อ' : '⏸ หยุดเวลา'}</span>
                 </button>
               )}
@@ -85,7 +88,7 @@ export function TeacherDashboard({
         </div>
         
         <div className="dashboard-right">
-          <h3>ผู้เข้าร่วมสอบ ({players.length})</h3>
+          <h3 style={{ marginTop: 0, color: 'var(--color-gold-light)', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>ผู้เข้าร่วมสอบ ({players.length})</h3>
           <div className="player-list">
             {sortedPlayers.length === 0 ? <p className="description text-muted">รอผู้เล่นเข้าร่วม...</p> : null}
             {sortedPlayers.map((p, i) => (
@@ -98,9 +101,16 @@ export function TeacherDashboard({
               </div>
             ))}
           </div>
+          
+          <button 
+            className="btn-back mt-4" 
+            style={{ display: 'block', textAlign: 'center', width: '100%', color: '#ef9a9a', marginTop: '3rem' }} 
+            onClick={onEndRoom}
+          >
+            ปิดห้องเรียน (จบเกม)
+          </button>
         </div>
       </div>
-      <button className="btn-back mt-4" style={{display:'block', textAlign:'center', width:'100%'}} onClick={onEndRoom}>ปิดห้องเรียน (จบเกม)</button>
     </div>
   );
 }
