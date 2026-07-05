@@ -70,7 +70,10 @@ export function TeacherDashboard({
 
             <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
               <button className="btn-luxury" onClick={onDrawClue} disabled={loading} style={{ flex: 2 }}>
-                <span className="btn-text-main">{loading ? 'กำลังสุ่ม...' : 'สุ่มคำใบ้ต่อไป'}</span>
+                <span className="btn-text-main">
+                  {loading && <span className="spinner"></span>}
+                  {loading ? 'กำลังสุ่ม...' : 'สุ่มคำใบ้ต่อไป'}
+                </span>
               </button>
               {timerData && (
                 <button className="btn-luxury-outline" onClick={onTogglePause} disabled={loading} style={{ flex: 1 }}>

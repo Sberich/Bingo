@@ -11,7 +11,7 @@ export function TeacherSetup({ teacherName, startId, setStartId, endId, setEndId
           กำหนดช่วงข้อสอบสำหรับการสร้างห้อง<br />
           <span style={{ fontSize: '0.85em', opacity: 0.8 }}>(ขั้นต่ำ 50 ข้อ)</span>
         </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem' }}>
+        <div style={{ display: 'flex', gap: 'var(--spacing-md)', justifyContent: 'center', marginTop: 'var(--spacing-md)' }}>
           <div className="input-wrapper" style={{ width: '130px' }}>
             <label>ข้อเริ่มต้น (Start)</label>
             <input type="number" value={startId} onChange={e => setStartId(e.target.value)} min="1" placeholder="เช่น 1" />
@@ -22,7 +22,10 @@ export function TeacherSetup({ teacherName, startId, setStartId, endId, setEndId
           </div>
         </div>
         <button className="btn-luxury mt-4" onClick={onCreateRoom} disabled={loading}>
-          <span className="btn-text-main">{loading ? 'กำลังสร้างห้อง...' : 'เปิดห้องเรียนใหม่'}</span>
+          <span className="btn-text-main">
+            {loading && <span className="spinner"></span>}
+            {loading ? 'กำลังสร้างห้อง...' : 'เปิดห้องเรียนใหม่'}
+          </span>
         </button>
         <button className="btn-back" onClick={onBack} disabled={loading}>กลับสู่หน้าหลัก</button>
       </div>

@@ -16,7 +16,10 @@ export function TeacherLogin({ teacherPhone, setTeacherPhone, onLogin, onBack, l
           />
         </div>
         <button className="btn-luxury mt-4" onClick={onLogin} disabled={loading}>
-          <span className="btn-text-main">{loading ? 'กำลังตรวจสอบ...' : 'เข้าสู่ระบบ'}</span>
+          <span className="btn-text-main">
+            {loading && <span className="spinner"></span>}
+            {loading ? 'กำลังเข้าสู่ระบบ...' : 'เข้าสู่ระบบ'}
+          </span>
         </button>
         <button className="btn-back" onClick={onBack} disabled={loading}>กลับสู่หน้าหลัก</button>
       </div>

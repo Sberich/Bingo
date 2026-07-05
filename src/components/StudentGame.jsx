@@ -56,7 +56,10 @@ export function StudentGame({
       </div>
 
       <button className="btn-luxury bingo-btn" onClick={onBingo} disabled={loading}>
-        <span className="btn-text-main">BINGO!</span>
+        <span className="btn-text-main">
+          {loading && <span className="spinner"></span>}
+          {loading ? 'กำลังตรวจสอบ...' : 'BINGO!'}
+        </span>
       </button>
     </div>
   );

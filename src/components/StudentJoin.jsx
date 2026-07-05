@@ -25,7 +25,10 @@ export function StudentJoin({ roomCode, setRoomCode, playerName, setPlayerName, 
           />
         </div>
         <button className="btn-luxury mt-4" onClick={onJoin} disabled={loading}>
-          <span className="btn-text-main">{loading ? 'กำลังเชื่อมต่อ...' : 'เข้าสู่สนามสอบ'}</span>
+          <span className="btn-text-main">
+            {loading && <span className="spinner"></span>}
+            {loading ? 'กำลังเชื่อมต่อ...' : 'เข้าสู่สนามสอบ'}
+          </span>
         </button>
         <button className="btn-back" onClick={onBack} disabled={loading}>กลับสู่หน้าหลัก</button>
       </div>
