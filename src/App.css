@@ -160,15 +160,16 @@ body::before {
   opacity: 0;
 }
 
-.meteor-1 { left: 50%; animation: meteorFall 8s linear infinite 2s; }
-.meteor-2 { left: 80%; animation: meteorFall 12s linear infinite 7s; }
-.meteor-3 { left: 30%; animation: meteorFall 10s linear infinite 1s; }
-.meteor-4 { left: 95%; animation: meteorFall 15s linear infinite 11s; }
+.meteor-1 { left: 50%; animation: meteorFall 20s linear infinite 2s; }
+.meteor-2 { left: 80%; animation: meteorFall 25s linear infinite 7s; }
+.meteor-3 { left: 30%; animation: meteorFall 22s linear infinite 1s; }
+.meteor-4 { left: 95%; animation: meteorFall 28s linear infinite 11s; }
 
 @keyframes meteorFall {
-  0% { transform: translate(100px, -200px) rotate(-45deg); opacity: 1; }
-  15% { transform: translate(-100vw, 100vh) rotate(-45deg); opacity: 0; }
-  100% { opacity: 0; }
+  0% { transform: translate(10vw, -200px) rotate(45deg); opacity: 0; }
+  5% { opacity: 1; }
+  80% { transform: translate(-100vw, 110vh) rotate(45deg); opacity: 0; }
+  100% { transform: translate(-100vw, 110vh) rotate(45deg); opacity: 0; }
 }
 
 /* -------------------------------------
