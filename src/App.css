@@ -145,6 +145,34 @@ body::before {
 }
 
 /* -------------------------------------
+   METEOR SHOWER (LUXURY)
+--------------------------------------- */
+.meteor {
+  position: fixed;
+  top: -150px;
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(212, 175, 55, 0));
+  transform: rotate(-45deg);
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.meteor-1 { left: 15%; animation: meteorFall 8s linear infinite 2s; }
+.meteor-2 { left: 45%; animation: meteorFall 12s linear infinite 7s; }
+.meteor-3 { left: 75%; animation: meteorFall 10s linear infinite 1s; }
+.meteor-4 { left: 95%; animation: meteorFall 15s linear infinite 11s; }
+
+@keyframes meteorFall {
+  0% { transform: rotate(-45deg) translate(0, 0); opacity: 1; }
+  15% { transform: rotate(-45deg) translate(-80vh, 80vh); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* -------------------------------------
    TOAST NOTIFICATION (LUXURY)
 --------------------------------------- */
 .toast-notification {

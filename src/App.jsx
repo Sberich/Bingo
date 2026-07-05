@@ -288,6 +288,10 @@ function App() {
   return (
     <div className={`app-container ${inGame ? 'full-width' : ''}`}>
       <div className="golden-dust"></div>
+      <div className="meteor meteor-1"></div>
+      <div className="meteor meteor-2"></div>
+      <div className="meteor meteor-3"></div>
+      <div className="meteor meteor-4"></div>
       <Toast toast={toast} />
       <ConfirmModal 
         show={showConfirmModal} 
