@@ -12,7 +12,7 @@ export function StudentGame({
       </div>
       
       <div className="clue-display student-clue">
-        <h5 style={{ margin: '0 0 0.5rem 0', fontWeight: '400', color: 'var(--color-gold-light)' }}>คำใบ้ล่าสุดจากห้องเรียน:</h5>
+        <h5 style={{ margin: '0', fontWeight: '400', color: 'var(--color-gold-light)' }}>คำใบ้ล่าสุดจากห้องเรียน:</h5>
         <div className="clue-box animated-reveal">
           {latestClueText ? latestClueText : 'รอคุณครูสุ่มคำใบ้...'}
         </div>
