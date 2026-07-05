@@ -72,6 +72,67 @@ body::before {
 }
 
 /* -------------------------------------
+   GOLDEN DUST EFFECT (LUXURY)
+--------------------------------------- */
+.golden-dust {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    10vw 100vh var(--color-gold),
+    20vw 110vh var(--color-gold-light),
+    35vw 120vh var(--color-gold),
+    50vw 105vh var(--color-gold-light),
+    70vw 115vh var(--color-gold),
+    85vw 95vh var(--color-gold-light),
+    95vw 125vh var(--color-gold),
+    15vw 130vh var(--color-gold-light),
+    45vw 140vh var(--color-gold),
+    65vw 100vh var(--color-gold-light),
+    80vw 135vh var(--color-gold),
+    25vw 120vh var(--color-gold-light);
+  animation: floatUp 20s linear infinite;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.golden-dust::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 
+    5vw 105vh var(--color-gold),
+    30vw 115vh var(--color-gold-light),
+    55vw 90vh var(--color-gold),
+    75vw 125vh var(--color-gold-light),
+    90vw 110vh var(--color-gold),
+    10vw 135vh var(--color-gold-light),
+    40vw 120vh var(--color-gold),
+    60vw 145vh var(--color-gold-light),
+    88vw 100vh var(--color-gold),
+    20vw 95vh var(--color-gold-light);
+  animation: floatUp 35s linear infinite;
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-150vh); opacity: 0; }
+}
+
+/* -------------------------------------
    TOAST NOTIFICATION (LUXURY)
 --------------------------------------- */
 .toast-notification {
@@ -623,7 +684,7 @@ input:focus {
     min-height: 100vh;
   }
   .glass-panel {
-    padding: 1rem 0.5rem 0.5rem;
+    padding: 2rem 0.5rem 1rem;
     border-radius: 0;
     min-height: 100vh;
     width: 100%;
@@ -683,9 +744,10 @@ input:focus {
     margin-bottom: 0.1rem;
   }
   .clue-box {
-    padding: 0.2rem;
-    min-height: 1.5em;
-    font-size: 0.85em;
+    padding: 1.5rem 1rem;
+    min-height: 5em;
+    font-size: 0.95em;
+    line-height: 1.5;
   }
   .bingo-btn {
     margin: 0.1rem auto 0;

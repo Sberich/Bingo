@@ -287,6 +287,7 @@ function App() {
 
   return (
     <div className={`app-container ${inGame ? 'full-width' : ''}`}>
+      <div className="golden-dust"></div>
       <Toast toast={toast} />
       <ConfirmModal 
         show={showConfirmModal} 
