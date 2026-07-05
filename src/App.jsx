@@ -137,7 +137,7 @@ function App() {
       const currentMarkedCount = newMarked.filter(Boolean).length;
       const maxAllowed = currentClues.length + 1; // +1 for Free Space
       if (currentMarkedCount >= maxAllowed) {
-        return showToast('คุณกาคำตอบเกินจำนวนคำใบ้!', 'error');
+        return showToast('คุณเลือกคำตอบไปแล้ว', 'error');
       }
     }
     
