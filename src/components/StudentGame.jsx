@@ -6,9 +6,26 @@ export function StudentGame({
 }) {
   return (
     <div className="glass-panel wide-panel">
-      <div className="top-bar">
-        <span className="player-name-display">👤 {playerName}</span>
-        <span className="room-badge">รหัสห้อง: {roomCode}</span>
+      <div className="top-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', minWidth: 0, flex: 1, marginRight: '10px' }}>
+          <span style={{ flexShrink: 0, marginRight: '5px' }}>👤</span>
+          <span 
+            className="player-name-display"
+            style={{ 
+              display: 'block', 
+              whiteSpace: 'nowrap', 
+              overflow: 'hidden', 
+              textOverflow: 'ellipsis',
+              minWidth: 0,
+              width: '100%'
+            }}
+          >
+            {playerName}
+          </span>
+        </div>
+        <span className="room-badge" style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>
+          รหัสห้อง: {roomCode}
+        </span>
       </div>
       
       <div className="clue-display student-clue">
