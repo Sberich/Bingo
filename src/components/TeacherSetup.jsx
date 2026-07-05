@@ -7,7 +7,10 @@ export function TeacherSetup({ teacherName, startId, setStartId, endId, setEndId
       <div className="gold-divider-small"></div>
       <div className="form-group center-content">
         <p className="teacher-desc" style={{ color: 'var(--color-gold-light)' }}>ยินดีต้อนรับ, ครู{teacherName}</p>
-        <p className="teacher-desc">กำหนดช่วงข้อสอบสำหรับการสร้างห้อง (ขั้นต่ำ 50 ข้อ)</p>
+        <p className="teacher-desc">
+          กำหนดช่วงข้อสอบสำหรับการสร้างห้อง<br />
+          <span style={{ fontSize: '0.85em', opacity: 0.8 }}>(ขั้นต่ำ 50 ข้อ)</span>
+        </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem' }}>
           <div className="input-wrapper" style={{ width: '130px' }}>
             <label>ข้อเริ่มต้น (Start)</label>
