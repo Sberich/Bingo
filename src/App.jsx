@@ -339,6 +339,7 @@ function App() {
           roomCode={roomCode} teacherName={teacherName}
           timeLimit={timeLimit} setTimeLimit={setTimeLimit}
           latestClueText={latestClueText} latestAnswer={latestAnswer}
+          currentClues={currentClues}
           timerData={timerData} remainingTime={remainingTime}
           players={players} loading={loading}
           onDrawClue={drawNextClue} onTogglePause={togglePause} onEndRoom={handleEndRoom}

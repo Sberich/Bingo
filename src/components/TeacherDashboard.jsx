@@ -3,7 +3,7 @@ import confetti from 'canvas-confetti';
 
 export function TeacherDashboard({ 
   roomCode, teacherName, timeLimit, setTimeLimit, latestClueText, latestAnswer,
-  timerData, remainingTime, players, loading, 
+  currentClues, timerData, remainingTime, players, loading, 
   onDrawClue, onTogglePause, onEndRoom 
 }) {
   const confettiFired = useRef(false);
@@ -48,7 +48,7 @@ export function TeacherDashboard({
           
           <div className="clue-display">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-              <h4 style={{ margin: 0, color: 'var(--color-gold)' }}>สุ่มคำถาม</h4>
+              <h4 style={{ margin: 0, color: 'var(--color-gold)' }}>สุ่มคำถาม {currentClues && currentClues.length > 0 && `(ข้อที่ ${currentClues.length})`}</h4>
               <div className="input-wrapper" style={{ flexDirection: 'row', alignItems: 'center', gap: '0.5rem' }}>
                 <label style={{ margin: 0 }}>เวลา (วิ)</label>
                 <input type="number" value={timeLimit} onChange={e => setTimeLimit(e.target.value)} min="10" style={{ width: '80px', padding: '0.5rem', fontSize: '1em' }} />
