@@ -105,7 +105,7 @@ function App() {
     setPlayerName(name);
     setLoading(true);
     try {
-      const res = await fetch(`${SCRIPT_URL}?action=joinRoom&roomCode=${encodeURIComponent(code)}&playerName=${encodeURIComponent(name)}`);
+      const res = await fetch(`${SCRIPT_URL}?action=joinRoom&roomCode=${encodeURIComponent(code)}&playerName=${encodeURIComponent(name)}&_t=${Date.now()}`);
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       if (data.status === 'success') {
@@ -150,7 +150,7 @@ function App() {
     setLoading(true);
     try {
       const markedStr = encodeURIComponent(JSON.stringify(marked));
-      const res = await fetch(`${SCRIPT_URL}?action=bingo&roomCode=${encodeURIComponent(roomCode)}&playerName=${encodeURIComponent(playerName)}&marked=${markedStr}`);
+      const res = await fetch(`${SCRIPT_URL}?action=bingo&roomCode=${encodeURIComponent(roomCode)}&playerName=${encodeURIComponent(playerName)}&marked=${markedStr}&_t=${Date.now()}`);
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       if (data.status === 'success') {
@@ -189,7 +189,7 @@ function App() {
     if (!phone) return showToast('กรุณากรอกเบอร์โทรศัพท์', 'error');
     setLoading(true);
     try {
-      const res = await fetch(`${SCRIPT_URL}?action=teacherLogin&phone=${encodeURIComponent(phone)}`);
+      const res = await fetch(`${SCRIPT_URL}?action=teacherLogin&phone=${encodeURIComponent(phone)}&_t=${Date.now()}`);
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       if (data.status === 'success') {
@@ -214,7 +214,7 @@ function App() {
     
     setLoading(true);
     try {
-      const res = await fetch(`${SCRIPT_URL}?action=createRoom&startId=${sId}&endId=${eId}`);
+      const res = await fetch(`${SCRIPT_URL}?action=createRoom&startId=${sId}&endId=${eId}&_t=${Date.now()}`);
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       if (data.status === 'success') {
@@ -233,7 +233,7 @@ function App() {
   const drawNextClue = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${SCRIPT_URL}?action=drawClue&roomCode=${encodeURIComponent(roomCode)}&duration=${timeLimit}`);
+      const res = await fetch(`${SCRIPT_URL}?action=drawClue&roomCode=${encodeURIComponent(roomCode)}&duration=${timeLimit}&_t=${Date.now()}`);
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       if (data.status === 'success') {
@@ -258,7 +258,7 @@ function App() {
     }
     setLoading(true);
     try {
-      await fetch(`${SCRIPT_URL}?action=endRoom&roomCode=${encodeURIComponent(roomCode)}`);
+      await fetch(`${SCRIPT_URL}?action=endRoom&roomCode=${encodeURIComponent(roomCode)}&_t=${Date.now()}`);
       showToast('ปิดห้องเรียนสำเร็จ', 'success');
       resetGame();
     } catch (err) {
@@ -273,7 +273,7 @@ function App() {
     setLoading(true);
     const act = timerData.isPaused ? 'resumeTimer' : 'pauseTimer';
     try {
-      const res = await fetch(`${SCRIPT_URL}?action=${act}&roomCode=${encodeURIComponent(roomCode)}`);
+      const res = await fetch(`${SCRIPT_URL}?action=${act}&roomCode=${encodeURIComponent(roomCode)}&_t=${Date.now()}`);
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       if (data.status === 'success') {

@@ -17,7 +17,7 @@ export function useRoomPolling({
     const fetchRoomStatus = async () => {
       if (!roomCode || !inGame) return;
       try {
-        const res = await fetch(`${scriptUrl}?action=getRoomStatus&roomCode=${encodeURIComponent(roomCode)}`);
+        const res = await fetch(`${scriptUrl}?action=getRoomStatus&roomCode=${encodeURIComponent(roomCode)}&_t=${Date.now()}`);
         if (!res.ok) {
           console.error('Network response was not ok');
           return;
