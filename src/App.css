@@ -609,7 +609,9 @@ input:focus {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
-  word-break: keep-all;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
   overflow: hidden;
   text-align: center;
 }

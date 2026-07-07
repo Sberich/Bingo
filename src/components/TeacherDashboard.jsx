@@ -35,7 +35,21 @@ export function TeacherDashboard({
   const sortedPlayers = [...players].sort((a, b) => {
     if (a.isBingo && !b.isBingo) return -1;
     if (!a.isBingo && b.isBingo) return 1;
+    if (a.isBingo && b.isBingo) {
+      // Both have bingo, sort by timestamp if available (ascending)
+      if (typeof a.isBingo === 'number' && typeof b.isBingo === 'number') {
+        return a.isBingo - b.isBingo;
+      }
+    }
     return (b.score || 0) - (a.score || 0);
+  });
+
+  // Calculate bingo ranks
+  let currentRank = 1;
+  sortedPlayers.forEach(p => {
+    if (p.isBingo) {
+      p.rank = currentRank++;
+    }
   });
 
   return (
@@ -79,9 +93,9 @@ export function TeacherDashboard({
                 </span>
               </button>
               {timerData && (
-                <button className="btn-luxury-outline" onClick={onTogglePause} disabled={loading}>
-                  <span className="btn-text-main">{timerData.isPaused ? '▶ เล่นต่อ' : '⏸ หยุดเวลา'}</span>
-                </button>
+                 <button className="btn-luxury-outline" onClick={onTogglePause} disabled={loading}>
+                   <span className="btn-text-main">{timerData.isPaused ? '▶ เล่นต่อ' : '⏸ หยุดเวลา'}</span>
+                 </button>
               )}
             </div>
           </div>
@@ -97,7 +111,7 @@ export function TeacherDashboard({
                   {p.name}
                   {p.score > 0 && !p.isBingo && <span style={{ fontSize: '0.8em', color: 'var(--color-gold)', marginLeft: '8px' }}>({p.score}/24)</span>}
                 </span>
-                {p.isBingo && <span className="bingo-tag">BINGO! 🎉</span>}
+                {p.isBingo && <span className="bingo-tag">BINGO! ลำดับ {p.rank} 🎉</span>}
               </div>
             ))}
           </div>
