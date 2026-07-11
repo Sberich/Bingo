@@ -315,6 +315,7 @@ function App() {
           latestClueText={latestClueText} timerData={timerData} remainingTime={remainingTime}
           card={card} marked={marked} toggleMark={toggleMark}
           onBingo={() => setShowConfirmModal(true)} loading={loading}
+          players={players}
         />
       )}
 
