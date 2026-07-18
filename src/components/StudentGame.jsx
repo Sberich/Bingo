@@ -135,6 +135,43 @@ export function StudentGame({
             {loading ? 'กำลังตรวจสอบ...' : 'BINGO!'}
           </span>
         </button>
+
+        {/* Player List Section */}
+        {players && players.length > 0 && (
+          <div className="player-list-container" style={{
+            marginTop: '20px',
+            padding: '10px',
+            background: 'rgba(0, 0, 0, 0.2)',
+            borderRadius: '10px',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            maxHeight: '100px',
+            overflowY: 'auto'
+          }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--color-gold-light)', marginBottom: '8px', textAlign: 'center' }}>
+              👥 ผู้ร่วมชะตากรรมในห้อง ({players.length} คน)
+            </div>
+            <div style={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              gap: '6px', 
+              justifyContent: 'center',
+              fontSize: '0.75rem',
+              color: '#eee'
+            }}>
+              {players.map((p, idx) => (
+                <span key={idx} style={{
+                  background: p.name === playerName ? 'rgba(212, 175, 55, 0.3)' : 'rgba(255,255,255,0.1)',
+                  padding: '3px 8px',
+                  borderRadius: '12px',
+                  border: p.name === playerName ? '1px solid var(--color-gold)' : '1px solid transparent',
+                  whiteSpace: 'nowrap'
+                }}>
+                  {p.name} {p.isBingo ? '👑' : ''}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
